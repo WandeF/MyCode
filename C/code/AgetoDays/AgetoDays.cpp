@@ -4,6 +4,7 @@
 */
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
 int countDay(int birthyear, int birthmon, int birthday);//计算天数函数 The function to count days
 int isLeapYear(int year); //isLeapYear
@@ -20,7 +21,9 @@ int main()
 
 	days = countDay(birthyear, birthmon, birthday);
 
-	printf("your days till your birth are %d .", days);
+	printf("your days till your birth are %d .\n", days);
+	system("pause");
+	return 0;
 }
 int countDay(int birthyear, int birthmon, int birthday)
 {
