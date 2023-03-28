@@ -32,6 +32,8 @@ int main(){
     printf("your ciphertext is:%s",plaintext);
 
     system("pause");
+
+    return 0;
 }
 
 void asciiCircle(char *plaintext, int n, int len)
