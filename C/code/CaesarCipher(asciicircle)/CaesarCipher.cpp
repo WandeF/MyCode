@@ -33,11 +33,11 @@ int main(){
     printf("please input your string:");
     getchar();
 
-    fgets(plaintext,MAXLEN,stdin);
+    fgets(plaintext,MAXLEN,stdin); //fgets(str,strmaxlen,stdin)  stdin:标准输入流，键盘输入,fgets()相比于gets()规定了最大输入长度，防止了栈溢出
 
-    len = strlen(plaintext)-1;
+    len = strlen(plaintext)-1; //fgets()读取的字符串多了一个'\n' ,因此需要长度-1
 
-    caesarCipher(plaintext,n,len);
+    caesarCipher(plaintext,n,len); 
 
     printf("your ciphertext is:%s",plaintext);
     
