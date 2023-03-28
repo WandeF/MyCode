@@ -29,7 +29,9 @@ int main(){
 
     printf("your ciphertext is: %s\n", plaintext);
     
-    system("pause");
+    system("pause");  
+    
+    return 0;
 }
 
 void caesarCipher(char *plaintext, int n, int len)
