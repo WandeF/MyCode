@@ -11,24 +11,14 @@
 
 void asciiCircle(char *plaintext, int n, int len); //传入字符串数组地址，直接对参数进行修改 ;n：步数，len：字符串长度
 int main(){
-    int add;  //加步数，左移  left steps
-    int sub;  //减步数，右移  right steps
     int n;    
     int len;
 
     char plaintext[MAXLEN];
 
-    printf("plseae input your step.\n");
+    printf("plseae input your step:");
 
-    printf("your add steps:");
-
-    scanf("%d",&add);
-
-    printf("your sub steps:");
-
-    scanf("%d",&sub);
-
-    n=add-sub;
+    scanf("%d",&n);
 
     printf("please input your string:");
     getchar();
