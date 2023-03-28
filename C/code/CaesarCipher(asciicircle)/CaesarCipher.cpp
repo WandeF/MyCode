@@ -1,5 +1,5 @@
 /*
-    auther: @WandeF
+    author: @WandeF
     模拟凯撒加密，实现自定义步数
     以后有空了，写一个des加密
 */
@@ -10,55 +10,41 @@
 #define MAXLEN 100
 
 void caesarCipher(char *plaintext, int n, int len); //传入字符串数组地址，直接对参数进行修改 ;n：步数，len：字符串长度
+
 int main(){
-    int add;  //加步数，左移  left steps
-    int sub;  //减步数，右移  right steps
     int n;
     int len;
-
     char plaintext[MAXLEN];
 
-    printf("plseae input your step:\n");
+    printf("please input your step: ");
+    scanf("%d", &n);
 
-    printf("your add steps:");
-
-    scanf("%d",&add);
-
-    printf("your sub steps:");
-
-    scanf("%d",&sub);
-
-    n=add-sub;
-
-    printf("please input your string:");
+    printf("please input your string: ");
     getchar();
+    fgets(plaintext, MAXLEN, stdin); //fgets(str,strmaxlen,stdin)  stdin:标准输入流，键盘输入,fgets()相比于gets()规定了最大输入长度，防止了栈溢出
 
-    fgets(plaintext,MAXLEN,stdin); //fgets(str,strmaxlen,stdin)  stdin:标准输入流，键盘输入,fgets()相比于gets()规定了最大输入长度，防止了栈溢出
+    len = strlen(plaintext) - 1; //fgets()读取的字符串多了一个'\n' ,因此需要长度-1
 
-    len = strlen(plaintext)-1; //fgets()读取的字符串多了一个'\n' ,因此需要长度-1
+    caesarCipher(plaintext, n, len); 
 
-    caesarCipher(plaintext,n,len); 
-
-    printf("your ciphertext is:%s",plaintext);
+    printf("your ciphertext is: %s\n", plaintext);
     
     system("pause");
-
 }
 
 void caesarCipher(char *plaintext, int n, int len)
 {
     int i;
-    for(i=0;i<len;i++)
+    for(i = 0; i < len; i++)
     {
-        if('a'<=plaintext[i]&&plaintext[i]<='z')
+        if('a' <= plaintext[i] && plaintext[i] <= 'z')
         {
-            plaintext[i]= ((plaintext[i]-97 + n)%26 + 26)%26 + 97;   //虽然看起来十分复杂，两次模的目的是为了防止出现余为负值的情况
-        } else if ('A'<=plaintext[i]&&plaintext[i]<='Z')
+            plaintext[i] = (((plaintext[i] - 'a' + n) % 26 + 26) % 26 + 'a');
+        }
+        else if ('A' <= plaintext[i] && plaintext[i] <= 'Z')
         {
-            plaintext[i]= ((plaintext[i]-65 + n)%26 + 26)%26 + 65;
-        } else 
-        {
-            plaintext[i] = plaintext[i];         //标点符号不做处理，符合人类阅读习惯
-        }    
+            plaintext[i] = (((plaintext[i] - 'A' + n) % 26 + 26) % 26 + 'A');
+        }
+        // else 保留原字符
     }
 }
