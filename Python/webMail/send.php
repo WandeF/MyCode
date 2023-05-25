@@ -1,19 +1,18 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    //前端发送的数据
     $receiver = urldecode($_POST['receiver']);
     $title = urldecode($_POST['title']);
     $content = urldecode($_POST['content']);
 
+    // http响应服务端
     $host = '127.0.0.1';  
     $port = 9000;        
 
+    // 创建socket对象，与服务端连接
     $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-    if ($socket === false) {
-        echo "Failed to create socket: " . socket_strerror(socket_last_error()) . "\n";
-        exit;
-    }
-
+   
     // 连接到 Socket 服务器
     $result = socket_connect($socket, $host, $port);
     if ($result === false) {
