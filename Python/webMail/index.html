@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Submission</title>
+    <script>
+        function sendRequest() {
+            var receiver = document.getElementById('receiver').value;
+            var title = document.getElementById('title').value;
+            var content = document.getElementById('content').value;
+
+            // 创建 XMLHttpRequest 对象
+            var xhr = new XMLHttpRequest();
+
+            // 设置请求方法和 URL
+            xhr.open('POST', 'send.php', true);
+
+            // 设置请求头部
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // 处理响应
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // 请求成功
+                    var response = xhr.responseText;
+                    alert(response);
+                } else {
+                    // 请求失败
+                    alert('Request failed. Status: ' + xhr.status);
+                }
+            };
+
+            // 发送请求
+      
+            xhr.send("receiver=" + encodeURIComponent(receiver) + "&title=" + encodeURIComponent(title) + "&content=" + encodeURIComponent(content));
+
+        }
+    </script>
+</head>
+<body>
+    <h1>WebMail@lzh</h1>
+
+    <label for="receiver">receiver:</label>
+    <input  type="email" id="receiver" required><br/>
+
+    <label for="title">title:</label>
+    <input  id="title" required><br/>
+
+    <label for="content">content:</label>
+    <textarea id="content" name="content" rows="30" cols="100" required></textarea><br>
+
+    <button onclick="sendRequest()">Submit</button>
+</body>
+</html>
+<style>
+    label {
+        width: 70px;
+        text-align: left;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+</style>
+
